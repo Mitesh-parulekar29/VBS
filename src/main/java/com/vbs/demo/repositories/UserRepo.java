@@ -20,7 +20,7 @@ public interface UserRepo extends JpaRepository<User,Integer>
 
     List<User> findAllByRole(String customer, Sort sort);
 
-    List<User> findAllByUsernameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrNameContainingIgnoreCaseAndRole(String keyword, String keyword1, String keyword2, String customer);
-
     User findByusername(String username);
+
+    List<User> findAllByUsernameContainingIgnoreCaseAndRole(String keyword, String customer);
 }

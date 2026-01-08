@@ -1,4 +1,4 @@
-package com.vbs.demo.dto;
+package com.vbs.demo.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

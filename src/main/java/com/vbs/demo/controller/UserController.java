@@ -1,9 +1,9 @@
 package com.vbs.demo.controller;
 
-import com.vbs.demo.Dto.LoginDto;
+import  com.vbs.demo.Dto.LoginDto;
 import com.vbs.demo.Dto.DisplayDto;
 
-import com.vbs.demo.dto.UpdateDto;
+import com.vbs.demo.Dto.UpdateDto;
 import com.vbs.demo.models.History;
 import com.vbs.demo.models.Transaction;
 import com.vbs.demo.models.User;
@@ -15,7 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -104,7 +104,8 @@ public class UserController {
     }
 
     @PostMapping("/add/{adminId}")
-    public String add(@RequestBody User user,@PathVariable int adminId){
+    public String add(@RequestBody User user,@PathVariable int adminId)
+    {
         History history=new History();
         User user1=userRepo.findById(adminId).orElseThrow(()->new RuntimeException("User not found"));
         history.setDescription("Admin "+adminId+" created user "+user.getUsername());
@@ -138,7 +139,6 @@ public class UserController {
 
     }
 
-
     @GetMapping("/users")
     public List<User>getAllUser(@RequestParam String sortBy, @RequestParam String order)
     {
@@ -156,7 +156,7 @@ public class UserController {
     @GetMapping("/users/{keyword}")
     public List<User>getUser(@PathVariable String keyword)
     {
-        return userRepo.findAllByUsernameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrNameContainingIgnoreCaseAndRole(keyword,keyword,keyword,"customer");
+        return userRepo.findAllByUsernameContainingIgnoreCaseAndRole(keyword,"customer");
     }
 
 
